@@ -1,0 +1,5 @@
+Handle,Title,Body (HTML),Vendor,Type,Tags,Published,Option1 Name,Option1 Value,Option2 Name,Option2 Value,Variant SKU,Variant Grams,Variant Inventory Qty,Variant Inventory Policy,Variant Fulfillment Service,Variant Price,Variant Compare At Price,Variant Requires Shipping,Variant Taxable,Variant Barcode,Image Src,Image Position
+demo-tshirt,Demo T-Shirt,<p>Тестовий футболка з різними кольорами і розмірами.</p>,DemoVendor,T-Shirt,"demo,shirt",TRUE,Color,Red,Size,S,TSHIRT-RED-S,200,10,deny,manual,19.99,24.99,TRUE,TRUE,,https://images.unsplash.com/photo-1585386959984-a41552231693,1
+demo-tshirt,,,,,,,Color,Red,Size,M,TSHIRT-RED-M,200,12,deny,manual,19.99,24.99,TRUE,TRUE,,https://images.unsplash.com/photo-1618354691717-3bfe91fcd7e3,2
+demo-tshirt,,,,,,,Color,Blue,Size,S,TSHIRT-BLUE-S,200,8,deny,manual,19.99,24.99,TRUE,TRUE,,https://images.unsplash.com/photo-1593032465171-8c547f05c6c4,3
+demo-tshirt,,,,,,,Color,White,Size,L,TSHIRT-WHITE-L,200,15,deny,manual,19.99,24.99,TRUE,TRUE,,https://images.unsplash.com/photo-1602810318383-e386cc2a3f3e,4
