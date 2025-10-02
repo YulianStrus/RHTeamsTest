@@ -4146,3 +4146,22 @@ text-component {
   transform: none;
   box-shadow: none;
 }
+.product-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+.product-swiper .swiper-slide {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+}
+.product-swiper img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.swiper-navigation-icon {
+  display: none !important;
+}
+

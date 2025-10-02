@@ -1,33 +1,51 @@
+<div class="swiper product-swiper"
+     data-slides-desktop="{{ section.settings.slides_per_view_desktop }}"
+     data-slides-tablet="{{ section.settings.slides_per_view_tablet }}"
+     data-slides-mobile="{{ section.settings.slides_per_view_mobile }}"
+     data-space-between="{{ section.settings.space_between }}"
+     data-pagination="{{ section.settings.pagination }}"
+     data-navigation="{{ section.settings.navigation }}"
+>
+  <div class="swiper-wrapper">
+    {% for image in product.images %}
+      <div class="swiper-slide" data-variant-ids="{{ image.variant_ids | join: ',' }}">
+        <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}">
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.settings.pagination %}
+    <div class="swiper-pagination"></div>
+  {% endif %}
+  {% if section.settings.navigation %}
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  {% endif %}
+</div>
+
+<script src="{{ 'product-gallery.js' | asset_url }}" defer></script>
+
 {% schema %}
 {
-  "name": "Product Gallery",
+  "name": "Product Gallery (Swiper)",
   "settings": [
     {
       "type": "range",
       "id": "slides_per_view_desktop",
       "label": "Slides per view (Desktop)",
-      "min": 1,
-      "max": 5,
-      "step": 1,
-      "default": 3
+      "min": 1, "max": 5, "step": 1, "default": 3
     },
     {
       "type": "range",
       "id": "slides_per_view_tablet",
       "label": "Slides per view (Tablet)",
-      "min": 1,
-      "max": 4,
-      "step": 1,
-      "default": 2
+      "min": 1, "max": 4, "step": 1, "default": 2
     },
     {
       "type": "range",
       "id": "slides_per_view_mobile",
       "label": "Slides per view (Mobile)",
-      "min": 1,
-      "max": 3,
-      "step": 1,
-      "default": 1
+      "min": 1, "max": 3, "step": 1, "default": 1
     },
     {
       "type": "checkbox",
@@ -45,84 +63,11 @@
       "type": "range",
       "id": "space_between",
       "label": "Space between slides (px)",
-      "min": 0,
-      "max": 50,
-      "step": 5,
-      "default": 10
+      "min": 0, "max": 50, "step": 5, "default": 10
     }
   ],
   "presets": [
-    {
-      "name": "Product Gallery"
-    }
+    { "name": "Product Gallery (Swiper)" }
   ]
 }
 {% endschema %}
-
-<div class="swiper product-swiper"
-     data-slides-desktop="{{ section.settings.slides_per_view_desktop }}"
-     data-slides-tablet="{{ section.settings.slides_per_view_tablet }}"
-     data-slides-mobile="{{ section.settings.slides_per_view_mobile }}"
-     data-space-between="{{ section.settings.space_between }}"
-     data-pagination="{{ section.settings.pagination }}"
-     data-navigation="{{ section.settings.navigation }}"
->
-  <div class="swiper-wrapper">
-    {% for image in product.images %}
-      <div class="swiper-slide" data-variant-ids="{{ image.variant_ids | join: ',' }}">
-        <img src="{{ image | image_url: width: 800 }}" alt="{{ image.alt | escape }}" />
-      </div>
-    {% endfor %}
-  </div>
-
-  {% if section.settings.pagination %}
-    <div class="swiper-pagination"></div>
-  {% endif %}
-  {% if section.settings.navigation %}
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-  {% endif %}
-</div>
-
-<script src="{{ 'product-gallery.js' | asset_url }}" defer></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const swiperEl = document.querySelector('.product-swiper');
-    if (!swiperEl) return;
-
-    const slidesPerViewDesktop = parseInt(swiperEl.dataset.slidesDesktop, 10) || 3;
-    const slidesPerViewTablet = parseInt(swiperEl.dataset.slidesTablet, 10) || 2;
-    const slidesPerViewMobile = parseInt(swiperEl.dataset.slidesMobile, 10) || 1;
-    const spaceBetween = parseInt(swiperEl.dataset.spaceBetween, 10) || 10;
-    const pagination = swiperEl.dataset.pagination === 'true';
-    const navigation = swiperEl.dataset.navigation === 'true';
-
-    new Swiper(swiperEl, {
-      slidesPerView: slidesPerViewDesktop,
-      spaceBetween: spaceBetween,
-      pagination: pagination
-        ? {
-            el: swiperEl.querySelector('.swiper-pagination'),
-            clickable: true,
-          }
-        : false,
-      navigation: navigation
-        ? {
-            nextEl: swiperEl.querySelector('.swiper-button-next'),
-            prevEl: swiperEl.querySelector('.swiper-button-prev'),
-          }
-        : false,
-      breakpoints: {
-        320: {
-          slidesPerView: slidesPerViewMobile,
-        },
-        768: {
-          slidesPerView: slidesPerViewTablet,
-        },
-        1024: {
-          slidesPerView: slidesPerViewDesktop,
-        },
-      },
-    });
-  });
-</script>
